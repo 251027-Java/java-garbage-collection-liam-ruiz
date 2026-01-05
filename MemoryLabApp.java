@@ -23,7 +23,15 @@ public class MemoryLabApp {
         // 4. Add a small delay between allocations for observation
 
         // Your code here:
-
+        try {
+            for (int i = 0; i < 250; i++) {
+                memoryBlocks.add(new byte[1024 * 1024]);
+                printMemoryStatus("Allocation " + i);
+                Thread.sleep(50);
+            }
+        } catch (OutOfMemoryError e) {
+            System.err.println("Out of memory: " + e.getMessage());
+        }
         printMemoryStatus("Final");
     }
 
